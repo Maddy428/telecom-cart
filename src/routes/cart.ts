@@ -34,6 +34,7 @@ cartRouter.get('/cart/:cartId',(req:Request,res:Response)=>{
 cartRouter.post('/cart/:cartid/item',(req: Request, res:Response)=>{
     console.log("incoming request")
   const item: CartItem = req.body;
+  console.log("item",item);
   const cart = client.addItem(req.params.cartId, item);
   if (!cart) {
     return res.status(404).json({ message: 'Cart not found or expired' });
