@@ -31,7 +31,7 @@ cartRouter.get('/cart/:cartId',(req:Request,res:Response)=>{
 
 })
 
-cartRouter.post('/cart/:cartid/item',(req: Request, res:Response)=>{
+cartRouter.post('/cart/:cartId/item',(req: Request, res:Response)=>{
     console.log("incoming request")
   const item: CartItem = req.body;
   console.log("item",item);
