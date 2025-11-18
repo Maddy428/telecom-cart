@@ -32,21 +32,30 @@ cartRouter.get('/cart/:cartId',(req:Request,res:Response)=>{
 })
 
 cartRouter.post('/cart/:cartId/item',(req: Request, res:Response)=>{
-    console.log("incoming request")
-  const item: CartItem = req.body;
-  console.log("item",item);
-  const cart = client.addItem(req.params.cartId, item);
-  if (!cart) {
-    return res.status(404).json({ message: 'Cart not found or expired' });
-  }
-    
-  res.json({ message: 'Item added', cart });
+    try{
+            console.log("incoming request")
+        const item: CartItem = req.body;
+        console.log("item",item);
+        const cart = client.addItem(req.params.cartId, item);
+        if (!cart) {
+            return res.status(404).json({ message: 'Cart not found or expired' });
+        }
+            
+        res.json({ message: 'Item added', cart });
+    }catch(err){
+        return res.status(400).json({message:"Unable to add item " + err.message})
+    }
+
 })
 
 cartRouter.delete('/cart/:cartId/item/:itemId', (req: Request, res: Response) => {
+try{
   const cart = client.removeItem(req.params.cartId, req.params.itemId);
   if (!cart) return res.status(404).json({ message: 'Cart not found or expired' });
   res.json({ message: 'Item removed', cart });
+   }catch(err){
+        return res.status(400).json({message:"Unable to delete item " + err.message})
+    }
 });
 
 export default cartRouter;
