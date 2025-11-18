@@ -22,6 +22,7 @@ export class SalesforceCartClient {
 
   getCart(cartId: string): Cart | null {
     const cart = carts[cartId];
+    console.log("cart1",cart);
     if (!cart || Date.now() - cart.createdAt > EXPIRY_MS) {
       delete carts[cartId];
       return null;
