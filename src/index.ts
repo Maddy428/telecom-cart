@@ -1,12 +1,13 @@
 import express from "express";
 import type { Request,Response } from "express";
+import cartRouter from "./routes/cart.ts";
 
 
 const app = express();
+app.use(express.json());
 
-app.get('/',(req:Request,res:Response)=>{
-    return res.send("App is working as expected!!!")
-})
+app.use('/api',cartRouter);
+
 
 
 app.listen(3000,()=>{
