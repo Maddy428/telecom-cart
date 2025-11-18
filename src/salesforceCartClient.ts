@@ -31,6 +31,7 @@ export class SalesforceCartClient {
 
   addItem(cartId: string, item: CartItem): Cart | null {
     const cart = this.getCart(cartId);
+    console.log(cart,"cart")
     if (!cart) return null;
     cart.items.push(item);
     return cart;
