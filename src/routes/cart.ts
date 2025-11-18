@@ -14,11 +14,14 @@ cartRouter.post('/cart',(req:Request, res:Response)=>{
 
 cartRouter.get('/cart/:cartId',(req:Request,res:Response)=>{
     try{
-        const {userId} = req.params;
-        if(typeof userId !== 'string'){
-            return res.status(400).json({message:"user Id must be string"})
+        console.log("data is coming")
+        const cartId = req.params.cartId;
+        if(!cartId){
+            return res.status(404).json({
+                message:'cart id id empty'
+            });
         }
-       const cart = client.getCart(userId)
+       const cart = client.getCart(cartId)
         return res.json({message:"cart data",cart})
     }catch(err){
         return res.json({message:'Unable fetch the details ' + err.message})
