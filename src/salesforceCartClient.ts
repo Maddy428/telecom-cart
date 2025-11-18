@@ -12,7 +12,7 @@ export type Cart = {
 };
 
 const carts: Record<string, Cart> = {};
-const EXPIRY_MS = 5 * 60 * 1000; // 5 minutes
+const EXPIRY_MS = 60 * 60 * 1000; 
 
 export class SalesforceCartClient {
   createCart(): Cart {
