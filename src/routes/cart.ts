@@ -1,6 +1,6 @@
 import express from 'express';
 import type {Request,Response} from 'express';
-import { SalesforceCartClient } from '../salesforceCartClient.ts';
+import { CartItem, SalesforceCartClient } from '../salesforceCartClient.ts';
 
 const cartRouter = express.Router();
 
@@ -28,5 +28,21 @@ cartRouter.get('/cart/:cartId',(req:Request,res:Response)=>{
     }
 
 })
+
+cartRouter.post('/cart/:cartid/item',(req: Request, res:Response)=>{
+  const item: CartItem = req.body;
+  const cart = client.addItem(req.params.cartId, item);
+  if (!cart) {
+    return res.status(404).json({ message: 'Cart not found or expired' });
+  }
+    
+  res.json({ message: 'Item added', cart });
+})
+
+cartRouter.delete('/cart/:cartId/item/:itemId', (req: Request, res: Response) => {
+  const cart = client.removeItem(req.params.cartId, req.params.itemId);
+  if (!cart) return res.status(404).json({ message: 'Cart not found or expired' });
+  res.json({ message: 'Item removed', cart });
+});
 
 export default cartRouter;
