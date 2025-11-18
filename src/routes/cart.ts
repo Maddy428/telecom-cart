@@ -4,7 +4,6 @@ const cartRouter = express.Router();
 
 const CartService = {
     getCart: (userId: string) => {
-        // mock data
         return { userId, items: [{ productId: 1, quantity: 2 }] };
     }
 };
