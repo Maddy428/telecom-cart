@@ -31,7 +31,9 @@ export class SalesforceCartClient {
 
   addItem(cartId: string, item: CartItem): Cart | null {
     const cart = this.getCart(cartId);
-    return cart ? (cart.items.push(item), cart) : null;
+    if (!cart) return null;
+    cart.items.push(item);
+    return cart;
   }
 
   removeItem(cartId: string, itemId: string): Cart | null {
