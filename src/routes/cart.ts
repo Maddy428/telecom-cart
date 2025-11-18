@@ -2,7 +2,7 @@ import express from 'express';
 import type {Request,Response} from 'express';
 import { SalesforceCartClient } from '../salesforceCartClient.ts';
 
-import {CartItem} from '../salesforceCartClient.ts'
+import type {CartItem} from '../salesforceCartClient.ts'
 
 const cartRouter = express.Router();
 
