@@ -29,6 +29,17 @@ export class SalesforceCartClient {
     return cart;
   }
 
+  addItem(cartId: string, item: CartItem): Cart | null {
+    const cart = this.getCart(cartId);
+    return cart ? (cart.items.push(item), cart) : null;
+  }
+
+  removeItem(cartId: string, itemId: string): Cart | null {
+    const cart = this.getCart(cartId);
+    if (!cart) return null;
+    cart.items = cart.items.filter(i => i.id !== itemId);
+    return cart;
+  }
 }
 
 
