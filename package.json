@@ -1,0 +1,21 @@
+{
+  "name": "telecom-cart",
+  "version": "1.0.0",
+  "description": "telecom cart curd operation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Madan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
