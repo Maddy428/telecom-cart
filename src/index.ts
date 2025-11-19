@@ -1,6 +1,6 @@
 import express from "express";
 import type { Request,Response } from "express";
-import cartRouter from "./routes/cart.ts";
+import cartRouter from "./routes/cart";
 
 
 

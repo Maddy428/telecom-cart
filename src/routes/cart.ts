@@ -1,6 +1,6 @@
 import express from 'express';
 import type {Request,Response} from 'express';
-import { SalesforceCartClient } from '../salesforceCartClient.ts';
+import { SalesforceCartClient } from '../salesforceCartClient';
 
 import type {CartItem} from '../salesforceCartClient.ts'
 
@@ -25,8 +25,9 @@ cartRouter.get('/cart/:cartId',(req:Request,res:Response)=>{
         }
        const cart = client.getCart(cartId)
         return res.json({message:"cart data",cart})
-    }catch(err){
-        return res.json({message:'Unable fetch the details ' + err.message})
+    }catch(err:unknown){
+        const error = err as Error;
+        return res.json({message:'Unable fetch the details ' + error.message})
     }
 
 })
@@ -42,8 +43,9 @@ cartRouter.post('/cart/:cartId/item',(req: Request, res:Response)=>{
         }
             
         res.json({ message: 'Item added', cart });
-    }catch(err){
-        return res.status(400).json({message:"Unable to add item " + err.message})
+    }catch(err:unknown){
+        const error = err as Error;
+        return res.status(400).json({message:"Unable to add item " + error.message})
     }
 
 })
@@ -53,8 +55,9 @@ try{
   const cart = client.removeItem(req.params.cartId, req.params.itemId);
   if (!cart) return res.status(404).json({ message: 'Cart not found or expired' });
   res.json({ message: 'Item removed', cart });
-   }catch(err){
-        return res.status(400).json({message:"Unable to delete item " + err.message})
+   }catch(err:unknown){
+        const error = err as Error;
+        return res.status(400).json({message:"Unable to delete item " + error.message})
     }
 });
 
